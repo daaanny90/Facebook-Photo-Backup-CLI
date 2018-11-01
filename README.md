@@ -31,7 +31,13 @@ The path must be written with backslash, even at the end, for example:
 ```
 C:\\Users\\myname\\Desktop\\
 ```
-
 Then just wait until all your pictures are safe.
+
+
+## Screenshots
+![facebook photo backup cli](https://github.com/daaanny90/Facebook-Photo-Backup-CLI/blob/master/screen_1.JPG)
+
+![facebook photo backup cli](https://github.com/daaanny90/Facebook-Photo-Backup-CLI/blob/master/screen_2.JPG)
+
 
 **If you have any problem please open an issue. If you are a programmer, please make a PR!**
