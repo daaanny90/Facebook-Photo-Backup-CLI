@@ -22,7 +22,6 @@ now = datetime.datetime.now()
 LOG_FILE = './log.txt'
 logging.basicConfig(filename=LOG_FILE, format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s', datefmt='%H:%M:%S', level=logging.DEBUG)
 
-#user data
 username = input('Your complete name on Facebook: ')
 password = getpass.getpass('Your password: ')
 savePath = input('Path were you want to save your pictures (please use double backspace -> \\\): ')
@@ -45,13 +44,11 @@ def downloadPic(arr,path):
 	print('Downloading pictures...')
 	sys.stdout.flush()
 	i = 1
-	#for link in tqdm(arr):
 	for link in arr:
 		try:
 			time.sleep(2)
 			driver.get(link)
 			wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'spotlight')))
-			#time.sleep(5)
 			print('Get picture ' + str(i) + ' of ' + str(len(arr)) +'...')
 			sys.stdout.flush()
 			src = driver.find_element_by_class_name("spotlight").get_attribute("src")
@@ -87,7 +84,6 @@ def saveLinks(arr):
 		arr.append(x.get_attribute("href"))
 
 try:
-	#start browser
 	_browser_profile = webdriver.FirefoxProfile()
 	_browser_profile.set_preference("dom.webnotifications.enabled", False)
 	binary = FirefoxBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
@@ -95,7 +91,6 @@ try:
 	driver.set_window_position(-2000, 0)
 	wait = WebDriverWait(driver, 10)
 
-	#login
 	print('Creating folders...')
 	os.makedirs(savePath + '/FacebookBackup_' + str(now.day) + '_' + str(now.month) + '_' + str(now.year) + '_' + str(now.hour) + '_' + str(now.minute) + '/taggedPhotos')
 	taggedPhotosPath = savePath + '/FacebookBackup_'  + str(now.day) + '_' + str(now.month) + '_' + str(now.year) + '_' + str(now.hour) + '_' + str(now.minute) + '/taggedPhotos/'
@@ -112,7 +107,6 @@ try:
 	time.sleep(1)
 	driver.find_element_by_xpath("//input[@type='submit']").send_keys(Keys.RETURN)
 	time.sleep(3)
-	#open user photo page and load all pictures where the user is tagged
 	try:
 		driver.find_element_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div/a").click()
 		print("Login done.")
@@ -131,14 +125,12 @@ try:
 	time.sleep(2)
 	profileUrl = driver.current_url
 
-	#get all download links of tagged pictures
 	driver.find_element_by_xpath("//*[@data-tab-key='photos']").click()
 	time.sleep(2)
 	print('Loading pictures where you are tagged...')
 	loadPic()
 	saveLinks(linksTaggedPic)
 
-	#get all download links of personal pictures
 	driver.get(profileUrl + '/photos_all')
 	time.sleep(2)
 	print('Loading all your pictures...')
@@ -147,8 +139,6 @@ try:
 
 	downloadPic(linksTaggedPic,taggedPhotosPath)
 	downloadPic(linksPersonalPic,personalPhotosPath)
-	#'C:\\Users\\spina\\Desktop\\fb\\taggedPhotos\\'
-	#'C:\\Users\\spina\\Desktop\\fb\\personalPhotos\\'
 	driver.quit()
 except:
 	print('ops... an error occurred. Please open an issue on GitHub (https://github.com/daaanny90/Facebook-Photo-Backup-CLI/issues) with the content of the last error in the log file.')
