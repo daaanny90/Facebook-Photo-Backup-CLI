@@ -151,7 +151,7 @@ try:
 	#'C:\\Users\\spina\\Desktop\\fb\\personalPhotos\\'
 	driver.quit()
 except:
-	print('ops... an error occurred. Please open an issue on GitHub (link) with the content of the last error in the log file.')
+	print('ops... an error occurred. Please open an issue on GitHub (https://github.com/daaanny90/Facebook-Photo-Backup-CLI/issues) with the content of the last error in the log file.')
 	sys.stdout.flush()
 	logging.exception('Error')
 	time.sleep(3)
