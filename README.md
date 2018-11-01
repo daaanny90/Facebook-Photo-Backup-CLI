@@ -24,7 +24,10 @@ Just start the script with:
 py fpb_cli.py
 ```
 The script will ask you your name on Facebook, your password and the path where you want to save the pictures.
-The path must be written with backspace, even at the end, for example:
+
+When you write your password nothing will be shown while typing. Is normal, just write the password and hit enter.
+
+The path must be written with backslash, even at the end, for example:
 ```
 C:\\Users\\myname\\Desktop\\
 ```
