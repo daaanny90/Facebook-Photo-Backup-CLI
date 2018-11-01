@@ -39,5 +39,7 @@ Then just wait until all your pictures are safe.
 
 ![facebook photo backup cli](https://github.com/daaanny90/Facebook-Photo-Backup-CLI/blob/master/screen_2.JPG)
 
+![facebook photo backup cli](https://github.com/daaanny90/Facebook-Photo-Backup-CLI/blob/master/screen_3.JPG)
+
 
 **If you have any problem please open an issue. If you are a programmer, please make a PR!**
