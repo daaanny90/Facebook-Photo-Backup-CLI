@@ -44,35 +44,36 @@ def downloadPic(arr,path):
 	print('Downloading pictures...')
 	sys.stdout.flush()
 	i = 1
+	x = 0
 	for link in arr:
-		try:
-			time.sleep(2)
-			driver.get(link)
-			wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'spotlight')))
-			print('Get picture ' + str(i) + ' of ' + str(len(arr)) +'...')
-			sys.stdout.flush()
-			src = driver.find_element_by_class_name("spotlight").get_attribute("src")
-			size = round((urllib.request.urlopen(src).length / 1024),2)
-			print ("Size: " + str(size) + " Kb")
-			sys.stdout.flush()
-			while True:
-				if size < 1:
-					print('Wrong pic, is too little, try again...')
-					sys.stdout.flush()
-					driver.get(link)
-					wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'spotlight')))
-					newSrc = driver.find_element_by_class_name("spotlight").get_attribute("src")
-					newSize = round((urllib.request.urlopen(newSrc).length / 1024),2)
-					size = newSize
-					src = newSrc
-				else:
-					print(str(size) + 'KB ok, downloading...')
-					print('\n')
-					sys.stdout.flush()
-					urllib.request.urlretrieve(src, path + 'pic_' + str(i) + '.jpg')
-					break
-		except TimeoutException:
-			raise
+		time.sleep(2)
+		driver.get(link)
+		wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'spotlight')))
+		print('Get picture ' + str(i) + ' of ' + str(len(arr)) +'...')
+		sys.stdout.flush()
+		src = driver.find_element_by_class_name("spotlight").get_attribute("src")
+		size = round((urllib.request.urlopen(src).length / 1024),2)
+		print ("Size: " + str(size) + " Kb")
+		sys.stdout.flush()
+		while True:
+			if size < 1:
+				x = x + 1
+				print('- Attempt n.' + str(x) + ' for pic ' + str(i) + ' of ' + str(len(arr)))
+				sys.stdout.flush()
+				driver.get(link)
+				time.sleep(3)
+				wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'spotlight')))
+				newSrc = driver.find_element_by_class_name("spotlight").get_attribute("src")
+				newSize = round((urllib.request.urlopen(newSrc).length / 1024),2)
+				size = newSize
+				src = newSrc
+			else:
+				x = 0
+				print(str(size) + 'KB ok, downloading...')
+				print('\n')
+				sys.stdout.flush()
+				urllib.request.urlretrieve(src, path + 'pic_' + str(i) + '.jpg')
+				break
 		i = i+1
 
 def saveLinks(arr):
