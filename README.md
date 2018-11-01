@@ -31,4 +31,4 @@ C:\\Users\\myname\\Desktop\\
 
 Then just wait until all your pictures are safe.
 
-**If you have any problem pleas open an issue. If you are a programmer, please make a PR!**
+**If you have any problem please open an issue. If you are a programmer, please make a PR!**
