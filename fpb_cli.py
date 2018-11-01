@@ -24,7 +24,7 @@ logging.basicConfig(filename=LOG_FILE, format='%(asctime)s,%(msecs)d %(name)s %(
 
 username = input('Your complete name on Facebook: ')
 password = getpass.getpass('Your password: ')
-savePath = input('Path were you want to save your pictures (please use double backspace -> \\\): ')
+savePath = input('Path were you want to save your pictures (please use double backslash -> \\\): ')
 
 def loadPic():
 	while True:
